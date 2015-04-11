@@ -1,0 +1,10 @@
+df1 <- read.csv("household_power_consumption.txt",sep = ";", header = FALSE, skip=66637, nrows=1440)
+df2 <- read.csv("household_power_consumption.txt",sep = ";", header = FALSE, skip=68077, nrows=1440)
+df <- rbind(df1,df2)
+n <- read.csv("household_power_consumption.txt",sep = ";", header = FALSE, nrows=1)
+names(df) <- lapply(n[1,],as.character)
+
+png("plot1.png", 480, 480)
+hist(df$Global_active_power, col="red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
+dev.off()
+rm(df1,df2,n,df)
